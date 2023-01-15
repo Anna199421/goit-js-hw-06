@@ -1,11 +1,13 @@
-const arrayOfCategories = document.querySelectorAll('li.item');
-console.log(`Number of categories: ${arrayOfCategories.length}`);
-
-const categoriesArray = [...arrayOfCategories]
-    .map(
-        categories => `Category: ${categories.children[0].textContent} 
-        Elements: ${categories.children[1].children.length}`)
-      
-    .join('\n');
-    
-console.log(categoriesArray);
+const counter = parent => { return parent.childElementCount };
+const message = elements => {
+    elements.forEach(element => {
+        const firstEl = element.firstElementChild;
+        const secondElem = firstEl.nextElementSibling
+        console.log(`Category: ${firstEl.textContent}`);
+        console.log(`Elements: ${counter(secondElem)}`);
+    });
+};
+const categories = document.querySelector('#categories');
+const subCategories = categories.querySelectorAll('.item');
+console.log(`Number of categories: ${counter(categories)}`);
+message(subCategories);
